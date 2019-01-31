@@ -10,6 +10,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { catchError, tap, map } from 'rxjs/operators';
 import { Customer } from './model/customer';
 import { Card } from './model/card';
+import { Consume } from './model/consume';
 
 @Injectable({
   providedIn: 'root'
@@ -107,6 +108,46 @@ export class ApiService {
     return this.http.delete<Card>(url, httpOptions).pipe(
       tap(_ => console.log(`deleted card id=${id}`)),
       catchError(this.handleError<Card>('deleteCard'))
+    );
+  }
+
+  //Consumes
+  getConsumes(id): Observable<Consume[]> {
+    return this.http.get<Consume[]>(`${apiUrl}consumes/${id}`)
+      .pipe(
+        tap(consumes => console.log('fetched consumes')),
+        catchError(this.handleError('getConsumes', []))
+      );
+  }
+  addConsume(consume): Observable<Consume> {
+    return this.http.post<Consume>(apiUrl + "consume/add", consume, httpOptions).pipe(
+      tap((consume: Consume) => console.log(`added consume w/ id=${consume.id}`)),
+      catchError(this.handleError<Consume>('addconsume'))
+    );
+  }
+
+  getConsume(id: number): Observable<Consume> {
+    const url = `${apiUrl}/consume/${id}`;
+    return this.http.get<Consume>(url).pipe(
+      tap(_ => console.log(`fetched consume id=${id}`)),
+      catchError(this.handleError<Consume>(`getConsume id=${id}`))
+    );
+  }
+
+  updateConsume (id, consume): Observable<any> {
+    const url = `${apiUrl}consume/${id}`;
+    return this.http.put(url, consume, httpOptions).pipe(
+      tap(_ => console.log(`updated consume id=${id}`)),
+      catchError(this.handleError<any>('updateConsume'))
+    );
+  }
+  
+  deleteConsume(id): Observable<Consume> {
+    const url = `${apiUrl}consume/${id}`;
+  
+    return this.http.delete<Consume>(url, httpOptions).pipe(
+      tap(_ => console.log(`deleted consume id=${id}`)),
+      catchError(this.handleError<Consume>('deleteConsume'))
     );
   }
 }

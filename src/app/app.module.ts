@@ -11,7 +11,7 @@ import { CustomerDetailComponent } from './components/customer/customer-detail/c
 import { CustomerAddComponent } from './components/customer/customer-add/customer-add.component';
 import { CustomerEditComponent } from './components/customer/customer-edit/customer-edit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {NgxMaskModule} from 'ngx-mask'
+import {NgxMaskModule} from 'ngx-mask';
 
 
 import {
@@ -28,6 +28,12 @@ import { CardEditComponent } from './components/card/card-edit/card-edit.compone
 import { CardAddComponent } from './components/card/card-add/card-add.component';
 import { CardDetailComponent } from './components/card/card-detail/card-detail.component';
 import { CardsComponent } from './components/card/cards/cards.component';
+import { ConsumesComponent } from './components/consume/consumes/consumes.component';
+import { ConsumeAddComponent } from './components/consume/consume-add/consume-add.component';
+import { ConsumeEditComponent } from './components/consume/consume-edit/consume-edit.component';
+import { ConsumeDetailComponent } from './components/consume/consume-detail/consume-detail.component';
+import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
+
 
 @NgModule({
   declarations: [
@@ -39,7 +45,12 @@ import { CardsComponent } from './components/card/cards/cards.component';
     CardEditComponent,
     CardAddComponent,
     CardDetailComponent,
-    CardsComponent
+    CardsComponent,
+    ConsumesComponent,
+    ConsumeAddComponent,
+    ConsumeEditComponent,
+    ConsumeDetailComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -57,7 +68,8 @@ import { CardsComponent } from './components/card/cards/cards.component';
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
-    NgxMaskModule.forRoot(null)
+    NgxMaskModule.forRoot(null),
+    DateInputsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

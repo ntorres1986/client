@@ -11,6 +11,11 @@ import { CardAddComponent } from './components/card/card-add/card-add.component'
 import { CardDetailComponent } from './components/card/card-detail/card-detail.component';
 import { CardEditComponent } from './components/card/card-edit/card-edit.component';
 
+import { ConsumesComponent } from './components/consume/consumes/consumes.component';
+import { ConsumeAddComponent } from './components/consume/consume-add/consume-add.component';
+import { ConsumeEditComponent } from './components/consume/consume-edit/consume-edit.component';
+import { ConsumeDetailComponent } from './components/consume/consume-detail/consume-detail.component';
+
 
 const routes: Routes = [
   {
@@ -56,6 +61,26 @@ const routes: Routes = [
     path: 'card-edit/:id',
     component: CardEditComponent,
     data: { title: 'Edit Card' }
+  },
+  {
+    path: 'consumes/:card_id/:card_number',
+    component: ConsumesComponent,
+    data: { title: 'List of Consumes' }
+  },
+  {
+    path: 'consume-add/:card_id/:card_number',
+    component: ConsumeAddComponent,
+    data: { title: 'Add Consume' }
+  },
+  {
+    path: 'consume-details/:id/:card_id/:card_number',
+    component: ConsumeDetailComponent,
+    data: { title: 'Card Consume' }
+  },
+  {
+    path: 'consume-edit/:id/:card_id/:card_number',
+    component: ConsumeEditComponent,
+    data: { title: 'Edit Consume' }
   }
 ];
 

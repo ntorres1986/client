@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular7-crud';
+  public value: Date = new Date(2000, 2, 10);
+
 }

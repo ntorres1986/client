@@ -24,7 +24,7 @@
             <td>{{card.ccv}}</td> 
             <td>{{card.number}}</td>
             <td>
-                <a [routerLink]="['/cards', card.id]">
+                <a [routerLink]="['/consumes', card.id, card.number]">
                     <i class="material-icons md-18">monetization_on</i>
                 </a>
             </td>

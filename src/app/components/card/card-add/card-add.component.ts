@@ -32,8 +32,6 @@ export class CardAddComponent implements OnInit {
   }
 
   onFormSubmit(form:NgForm) {
-
-  
     if( this.cardForm.status === "VALID" ){
       this.isLoadingResults = true;
       

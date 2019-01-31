@@ -78,5 +78,10 @@ export class ApiService {
         catchError(this.handleError('getCards', []))
       );
   }
-  
+  addCard(card): Observable<Card> {
+    return this.http.post<Card>(apiUrl + "card/add", card, httpOptions).pipe(
+      tap((customer: Card) => console.log(`added card w/ id=${card.id}`)),
+      catchError(this.handleError<Card>('addCard'))
+    );
+  }
 }

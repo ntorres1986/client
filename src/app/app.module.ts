@@ -11,6 +11,8 @@ import { CustomerDetailComponent } from './components/customer/customer-detail/c
 import { CustomerAddComponent } from './components/customer/customer-add/customer-add.component';
 import { CustomerEditComponent } from './components/customer/customer-edit/customer-edit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {NgxMaskModule} from 'ngx-mask'
+
 
 import {
   MatInputModule,
@@ -54,7 +56,8 @@ import { CardsComponent } from './components/card/cards/cards.component';
     MatIconModule,
     MatButtonModule,
     MatCardModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    NgxMaskModule.forRoot(null)
   ],
   providers: [],
   bootstrap: [AppComponent]

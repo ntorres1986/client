@@ -1,38 +1,37 @@
 
 <div class="col-md-6 offset-md-3">
     <form [formGroup]="cardForm" (ngSubmit)="onFormSubmit(cardForm.value)">
-        <div class="form-group row">
-          <div class="col">
-            <input type="text" class="form-control" formControlName="number" placeholder="Number">
-            <div *ngIf="cardForm.get('number').errors && cardForm.get('number').dirty">
-                <p color="danger" ion-text *ngIf="cardForm.get('number').hasError('required')">Field is required</p>
-                <p color="danger" ion-text *ngIf="cardForm.get('number').hasError('minlength')">Min of 16 character</p>
-                <p color="danger" ion-text *ngIf="cardForm.get('number').hasError('maxlength')">Min of 16 characters</p>
+
+        <div class="form-group row">            
+            <div class="col">
+                <input type="text" class="form-control"  mask="0000 0000 0000 0000" formControlName="number" placeholder="Card number">                
+                <div *ngIf="cardForm.get('number').errors && cardForm.get('number').dirty">
+                    <p color="danger" ion-text *ngIf="cardForm.get('number').hasError('required')">Field is required</p>
+                    <p color="danger" ion-text *ngIf="cardForm.get('number').hasError('minlength')">Min of 16 character</p>
+                    <p color="danger" ion-text *ngIf="cardForm.get('number').hasError('maxlength')">Min of 16 characters</p>
+                </div>
             </div>
-          </div>
-          <div class="col">
-            <input type="text" class="form-control" formControlName="ccv" placeholder="Ccv">
-            <div *ngIf="cardForm.get('ccv').errors && cardForm.get('ccv').dirty">
-                <p color="danger" ion-text *ngIf="cardForm.get('ccv').hasError('required')">Field is required</p>
-                <p color="danger" ion-text *ngIf="cardForm.get('ccv').hasError('minlength')">Min of 3 character</p>
-                <p color="danger" ion-text *ngIf="cardForm.get('ccv').hasError('maxlength')">Min of 4 characters</p>
-            </div>
-          </div>
         </div>
 
-      
-        <div class="form-group row">
+        <div class="form-group row">          
             <div class="col">
-              <input type="text" class="form-control" data-inputmask="'mask': '9999 9999 9999 9999'" formControlName="type" placeholder="Card type">
-              
-              <div *ngIf="cardForm.get('type').errors && cardForm.get('type').dirty">
-                  <p color="danger" ion-text *ngIf="cardForm.get('type').hasError('required')">Field is required</p>
-                  <p color="danger" ion-text *ngIf="cardForm.get('type').hasError('minlength')">Min of 1 character</p>
-                  <p color="danger" ion-text *ngIf="cardForm.get('type').hasError('maxlength')">Min of 50 characters</p>
-              </div>
-            </div>
+                <input type="text" class="form-control" formControlName="ccv" placeholder="Ccv">
+                <div *ngIf="cardForm.get('ccv').errors && cardForm.get('ccv').dirty">
+                    <p color="danger" ion-text *ngIf="cardForm.get('ccv').hasError('required')">Field is required</p>
+                    <p color="danger" ion-text *ngIf="cardForm.get('ccv').hasError('minlength')">Min of 3 character</p>
+                    <p color="danger" ion-text *ngIf="cardForm.get('ccv').hasError('maxlength')">Min of 4 characters</p>
+                </div>
+          </div>
+          <div class="col">
+                <input type="text" class="form-control" formControlName="type" placeholder="Card type">
+                <div *ngIf="cardForm.get('type').errors && cardForm.get('type').dirty">
+                    <p color="danger" ion-text *ngIf="cardForm.get('type').hasError('required')">Field is required</p>
+                    <p color="danger" ion-text *ngIf="cardForm.get('type').hasError('minlength')">Min of 1 character</p>
+                    <p color="danger" ion-text *ngIf="cardForm.get('type').hasError('maxlength')">Min of 50 characters</p>
+                </div>
+          </div>
+
         </div>
-      
   
         <div class="form-group row">
             <div class="col">

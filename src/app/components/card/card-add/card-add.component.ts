@@ -3,7 +3,7 @@ import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Valida
 
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../../api.service';
-import { Card } from '../../../model/card';
+import { Card } from '../../../model/card'; 
 
 @Component({
   selector: 'app-card-add',
@@ -14,10 +14,9 @@ export class CardAddComponent implements OnInit {
 
   customerId = null;
   cardForm: FormGroup;
-  name:string='';
-  address:string='';
-  city:string='';
-  telephone:String='';
+  number:string='';
+  ccv:string;
+  type:string;
   isLoadingResults = false;
 
   constructor(private router: Router, private route: ActivatedRoute, private api: ApiService, private formBuilder: FormBuilder) { }
@@ -29,6 +28,23 @@ export class CardAddComponent implements OnInit {
       ccv: ['',[ Validators.required, Validators.minLength(3) , Validators.maxLength(4) ]],
       type : ['', [ Validators.required, Validators.minLength(1) , Validators.maxLength(50) ]]
     });
+  }
+
+  onFormSubmit(form:NgForm) {
+
+    if( this.cardForm.status === "VALID" ){
+      this.isLoadingResults = true;
+      this.api.addCard(form)
+        .subscribe(res => {
+          console.log( "res" , res )
+            let id = res['id'];
+            this.isLoadingResults = false;
+            this.router.navigate(['/card-details', this.customerId]);
+          }, (err) => {
+            console.log(err);
+            this.isLoadingResults = false;
+          });
+    }
   }
 
 }

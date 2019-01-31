@@ -79,9 +79,34 @@ export class ApiService {
       );
   }
   addCard(card): Observable<Card> {
-    return this.http.post<Card>(apiUrl + "card/add", card, httpOptions).pipe(
+    return this.http.post<Card>(apiUrl + "cards-add", card, httpOptions).pipe(
       tap((customer: Card) => console.log(`added card w/ id=${card.id}`)),
       catchError(this.handleError<Card>('addCard'))
+    );
+  }
+
+  getCard(id: number): Observable<Card> {
+    const url = `${apiUrl}/card/${id}`;
+    return this.http.get<Card>(url).pipe(
+      tap(_ => console.log(`fetched card id=${id}`)),
+      catchError(this.handleError<Card>(`getCard id=${id}`))
+    );
+  }
+
+  updateCard (id, card): Observable<any> {
+    const url = `${apiUrl}card/${id}`;
+    return this.http.put(url, card, httpOptions).pipe(
+      tap(_ => console.log(`updated card id=${id}`)),
+      catchError(this.handleError<any>('updateCard'))
+    );
+  }
+  
+  deleteCard(id): Observable<Card> {
+    const url = `${apiUrl}card/${id}`;
+  
+    return this.http.delete<Card>(url, httpOptions).pipe(
+      tap(_ => console.log(`deleted card id=${id}`)),
+      catchError(this.handleError<Card>('deleteCard'))
     );
   }
 }

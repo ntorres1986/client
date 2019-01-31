@@ -1,6 +1,9 @@
+import { Customer } from "./customer";
+
 export class Card {
     id: number;
     ccv: string;
     number: string;
-    customer: number
+    card_type: string;
+    customer: Customer
   }

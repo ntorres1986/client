@@ -46,7 +46,7 @@ import { CardsComponent } from './components/card/cards/cards.component';
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
     BrowserAnimationsModule,
     MatInputModule,
     MatTableModule,

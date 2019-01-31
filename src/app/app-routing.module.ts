@@ -8,6 +8,8 @@ import { CustomerEditComponent } from './components/customer/customer-edit/custo
 
 import { CardsComponent } from './components/card/cards/cards.component';
 import { CardAddComponent } from './components/card/card-add/card-add.component';
+import { CardDetailComponent } from './components/card/card-detail/card-detail.component';
+import { CardEditComponent } from './components/card/card-edit/card-edit.component';
 
 
 const routes: Routes = [
@@ -44,6 +46,16 @@ const routes: Routes = [
     path: 'card-add/:customer_id',
     component: CardAddComponent,
     data: { title: 'Add Card' }
+  },
+  {
+    path: 'card-details/:id',
+    component: CardDetailComponent,
+    data: { title: 'Card Details' }
+  },
+  {
+    path: 'card-edit/:id',
+    component: CardEditComponent,
+    data: { title: 'Edit Card' }
   }
 ];
 

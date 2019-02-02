@@ -16,6 +16,10 @@ import { ConsumeAddComponent } from './components/consume/consume-add/consume-ad
 import { ConsumeEditComponent } from './components/consume/consume-edit/consume-edit.component';
 import { ConsumeDetailComponent } from './components/consume/consume-detail/consume-detail.component';
 
+import { AdviserComponent } from './components/advisers/adviser/adviser.component';
+import { AdviserAddComponent } from './components/advisers/adviser-add/adviser-add.component';
+import { AdviserEditComponent } from './components/advisers/adviser-edit/adviser-edit.component';
+import { AdviserDetailComponent } from './components/advisers/adviser-detail/adviser-detail.component';
 
 const routes: Routes = [
   {
@@ -81,7 +85,23 @@ const routes: Routes = [
     path: 'consume-edit/:id/:card_id/:card_number',
     component: ConsumeEditComponent,
     data: { title: 'Edit Consume' }
-  }
+  },
+  {
+    path: 'advisers',
+    component: AdviserComponent
+  },
+  {
+    path: 'adviser-details/:id',
+    component: AdviserDetailComponent
+  },
+  {
+    path: 'adviser-add',
+    component: AdviserAddComponent
+  },
+  {
+    path: 'adviser-edit/:id',
+    component: AdviserEditComponent
+  },
 ];
 
 @NgModule({

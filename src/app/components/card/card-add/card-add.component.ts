@@ -14,14 +14,13 @@ export class CardAddComponent implements OnInit {
 
   
   card: Card = {id: 0, ccv: '', number: '', card_type: '', customer: { id: 0, name: '', address: '', city: '', telephone: ''} }; 
-  
+  messageErrors = true;
   cardForm: FormGroup;
   isLoadingResults = false;
 
   constructor(private router: Router, private route: ActivatedRoute, private api: ApiService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    
     this.card.customer.id = this.route.snapshot.params['customer_id'];
   
     this.cardForm = this.formBuilder.group({
@@ -32,6 +31,7 @@ export class CardAddComponent implements OnInit {
   }
 
   onFormSubmit(form:NgForm) {
+    
     if( this.cardForm.status === "VALID" ){
       this.isLoadingResults = true;
       
@@ -44,6 +44,9 @@ export class CardAddComponent implements OnInit {
             console.log(err);
             this.isLoadingResults = false;
           });
+    }
+    else{
+      this.messageErrors = false;
     }
   }
 

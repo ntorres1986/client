@@ -15,6 +15,7 @@ export class CardEditComponent implements OnInit {
   card: Card = {id: 0, ccv: '', number: '', card_type: '', customer: { id: 0, name: '', address: '', city: '', telephone: ''} }; 
   
   cardForm: FormGroup;
+  messageErrors = true;
   isLoadingResults = false;
   
 
@@ -37,17 +38,22 @@ export class CardEditComponent implements OnInit {
       });
   }
   onFormSubmit(form:NgForm) {
-    this.isLoadingResults = true;
-    this.api.updateCard(this.card.id, form)
-      .subscribe(res => {
-          let id = res['id'];
-          this.isLoadingResults = false;
-          this.router.navigate(['/card-details', id]);
-        }, (err) => {
-          console.log(err);
-          this.isLoadingResults = false;
-        }
-      );
-  }
-
+    console.log("form status", this.cardForm.status);
+    if( this.cardForm.status === "VALID" ){
+      this.isLoadingResults = true;
+      this.api.updateCard(this.card.id, form)
+        .subscribe(res => {
+            let id = res['id'];
+            this.isLoadingResults = false;
+            this.router.navigate(['/card-details', id]);
+          }, (err) => {
+            console.log(err);
+            this.isLoadingResults = false;
+          }
+        );
+      }
+      else{
+        this.messageErrors = false;
+      }
+    }
 }

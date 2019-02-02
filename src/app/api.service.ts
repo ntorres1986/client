@@ -11,7 +11,8 @@ import { catchError, tap, map } from 'rxjs/operators';
 import { Customer } from './model/customer';
 import { Card } from './model/card';
 import { Consume } from './model/consume';
-
+import { Adviser } from './model/adviser';
+ 
 @Injectable({
   providedIn: 'root'
 })
@@ -148,6 +149,46 @@ export class ApiService {
     return this.http.delete<Consume>(url, httpOptions).pipe(
       tap(_ => console.log(`deleted consume id=${id}`)),
       catchError(this.handleError<Consume>('deleteConsume'))
+    );
+  }
+
+  //Advisers
+  getAdvisers(): Observable<Adviser[]> {
+    return this.http.get<Adviser[]>(`${apiUrl}advisers`)
+      .pipe(
+        tap(advisers => console.log('fetched advisers')),
+        catchError(this.handleError('getAdvisers', []))
+      );
+  }
+  addAdviser(adviser): Observable<Adviser> {
+    return this.http.post<Adviser>(apiUrl + "adviser-add", adviser, httpOptions).pipe(
+      tap((adviser: Adviser) => console.log(`added adviser w/ id=${adviser.id}`)),
+      catchError(this.handleError<Adviser>('addAviser'))
+    );
+  }
+
+  getAdviser(id: number): Observable<Adviser> {
+    const url = `${apiUrl}adviser/${id}`;
+    return this.http.get<Adviser>(url).pipe(
+      tap(_ => console.log(`fetched adviser id=${id}`)),
+      catchError(this.handleError<Adviser>(`getAdviser id=${id}`))
+    );
+  }
+
+  updateAdviser(id, adviser): Observable<any> {
+    const url = `${apiUrl}adviser/${id}`;
+    return this.http.put(url, adviser, httpOptions).pipe(
+      tap(_ => console.log(`updated adviser id=${id}`)),
+      catchError(this.handleError<any>('updateAdviser'))
+    );
+  }
+  
+  deleteAdviser(id): Observable<Adviser> {
+    const url = `${apiUrl}adviser/${id}`;
+  
+    return this.http.delete<Adviser>(url, httpOptions).pipe(
+      tap(_ => console.log(`deleted adviser id=${id}`)),
+      catchError(this.handleError<Adviser>('deleteAdviser'))
     );
   }
 }

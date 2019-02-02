@@ -2,23 +2,37 @@
 <div class="button-row">
     <a [routerLink]="['/customer']">Go to customers</a>
 </div>
-<dl class="row">
-    <dt class="col-sm-12"><h1>Detail customer</h1></dt>
-    <dt class="col-sm-2">Name :</dt>
-    <dd class="col-sm-10">{{customer.name}}</dd>
-  
-    <dt class="col-sm-2">Address :</dt>
-    <dd class="col-sm-10">{{customer.address}}</dd>
 
-    <dt class="col-sm-2">City :</dt>
-    <dd class="col-sm-10">{{customer.city}}</dd>
+<div class="col-sm-6">
+<table class="table table-sm">
+        <thead>
+            <tr>
+                <th scope="col" colspan="4">Customer detail</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Name</th>
+                <td>{{customer.name}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Address</th>
+                <td>{{customer.address}}</td>
+            </tr>
+            <tr>
+                <th scope="row">City</th>
+                <td>{{customer.city}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Telephone</th>
+                <td>{{customer.telephone}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
-    <dt class="col-sm-2">Telephone :</dt>
-    <dd class="col-sm-10">{{customer.telephone}}</dd>
-
-    <dd class="col-sm-12 text-right">
-        <a  (click)="deleteCustomer(customer.id)" >
-            <i class="material-icons md-18">delete</i>
-        </a>
-    </dd>
-  </dl>
+<dd class="col-sm-12 text-right">
+    <a  (click)="deleteCustomer(customer.id)" >
+        <i class="material-icons md-18">delete</i>
+    </a>
+</dd>

@@ -23,7 +23,9 @@ import {
   MatIconModule,
   MatButtonModule,
   MatCardModule,
-  MatFormFieldModule } from "@angular/material";
+  MatFormFieldModule 
+} 
+from "@angular/material";
 import { CardEditComponent } from './components/card/card-edit/card-edit.component';
 import { CardAddComponent } from './components/card/card-add/card-add.component';
 import { CardDetailComponent } from './components/card/card-detail/card-detail.component';
@@ -33,6 +35,11 @@ import { ConsumeAddComponent } from './components/consume/consume-add/consume-ad
 import { ConsumeEditComponent } from './components/consume/consume-edit/consume-edit.component';
 import { ConsumeDetailComponent } from './components/consume/consume-detail/consume-detail.component';
 import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { AdviserComponent } from './components/advisers/adviser/adviser.component';
+import { AdviserAddComponent } from './components/advisers/adviser-add/adviser-add.component';
+import { AdviserEditComponent } from './components/advisers/adviser-edit/adviser-edit.component';
+import { AdviserDetailComponent } from './components/advisers/adviser-detail/adviser-detail.component';
 
 
 @NgModule({
@@ -50,6 +57,11 @@ import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
     ConsumeAddComponent,
     ConsumeEditComponent,
     ConsumeDetailComponent,
+    NavbarComponent,
+    AdviserComponent,
+    AdviserAddComponent,
+    AdviserEditComponent,
+    AdviserDetailComponent,
     
   ],
   imports: [

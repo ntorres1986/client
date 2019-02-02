@@ -1,6 +1,10 @@
-<a [routerLink]="['/customer-add']">
-    <i class="material-icons md-18">add_circle</i> Add customer
-  </a>
+<div class="row text-right">
+    <div class="col">
+    <button type="button" [routerLink]="['/customer-add']" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+        Add customer
+    </button>
+    </div>
+</div>
 <table class="table">
     <thead>
         <th>ACTIONS</th>

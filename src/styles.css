@@ -1,5 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
-
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.col{
+    margin: 10px !important;
+}
+table td a {
+  padding-right: 20px;
+}
+p.danger{
+  margin-top: 5px;
+  color: red;
+  font-size: 12px;
+  font-style: italic;
+}
+span.required{
+  margin-left: 5px;
+  color: red;
+}
+.hide{
+  display: none;
+}
+.button-row{
+  margin-bottom: 20px; 
+}

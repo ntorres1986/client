@@ -16,6 +16,7 @@ export class CustomerAddComponent implements OnInit {
   city:string='';
   telephone:String='';
   isLoadingResults = false;
+  messageErrors = true;
 
   constructor(private router: Router, private api: ApiService, private formBuilder: FormBuilder) { }
 
@@ -24,7 +25,7 @@ export class CustomerAddComponent implements OnInit {
       name: ['',[ Validators.required, Validators.minLength(2) , Validators.maxLength(50) ]],
       address : ['',[ Validators.required, Validators.minLength(1) , Validators.maxLength(100) ]],
       city : ['', [ Validators.required, Validators.minLength(1) , Validators.maxLength(30) ]],
-      telephone : ['', [ Validators.required, Validators.minLength(1) , Validators.maxLength(20) ]]
+      telephone : ['', [ Validators.required, Validators.minLength(1) , Validators.maxLength(20), Validators.pattern("^[0-9]*$")]]
     });
   }
   onFormSubmit(form:NgForm) {
@@ -41,6 +42,9 @@ export class CustomerAddComponent implements OnInit {
             console.log(err);
             this.isLoadingResults = false;
           });
+    }
+    else{
+      this.messageErrors = false;
     }
   }
 }

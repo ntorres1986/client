@@ -1,6 +1,12 @@
-<a [routerLink]="['/consume-add' , cardId, cardNumber]">
-  <i class="material-icons md-18">add_circle</i> Add consume to card # {{cardNumber}}
-</a>
+
+
+ <div class="row text-right">
+    <div class="col">
+    <button type="button"  [routerLink]="['/consume-add' , cardId, cardNumber]" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+        Add consume to card #{{cardNumber}}
+    </button>
+    </div>
+</div>
 
 <table class="table">
     <thead>

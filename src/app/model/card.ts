@@ -7,3 +7,4 @@ export class Card {
     card_type: string;
     customer: Customer
   }
+  

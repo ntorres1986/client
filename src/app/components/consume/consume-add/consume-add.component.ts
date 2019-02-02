@@ -15,6 +15,7 @@ export class ConsumeAddComponent implements OnInit {
 
   consume: Consume = { id : 0, date : null, description : null, amount: null , card :{id : 0, ccv : '', number : '', card_type : '', customer : null }};
   consumeForm: FormGroup;
+  messageErrors = true;
   constructor(private router: Router, private route: ActivatedRoute, private api: ApiService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
@@ -23,14 +24,13 @@ export class ConsumeAddComponent implements OnInit {
 
     this.consumeForm = this.formBuilder.group({
       date : ['',[ Validators.required,  ]],
-      amount: ['',[ Validators.required, Validators.maxLength(12) ]],
-      description : ['', [ Validators.required, Validators.maxLength(100) ]]
+      amount: ['',[ Validators.required, Validators.minLength(1), Validators.maxLength(12),  Validators.pattern("^[0-9]*$") ]],
+      description : ['', [ Validators.required, Validators.maxLength(100) , ]]
     });
   }
 
   onFormSubmit(form:NgForm) {
-    if( this.consumeForm.status === "VALID" ){
-      
+    if( this.consumeForm.status === "VALID" ){      
       this.api.addConsume(this.consume)
         .subscribe(res => {
           console.log( "res" , res )
@@ -39,6 +39,9 @@ export class ConsumeAddComponent implements OnInit {
           }, (err) => {
             console.log(err);
           });
+    }
+    else{
+      this.messageErrors = false;
     }
   }
 

@@ -18,6 +18,7 @@ export class CustomerEditComponent implements OnInit {
   city:string='';
   telephone:string='';
   isLoadingResults = false;
+  messageErrors = true;
 
   constructor(private router: Router, private route: ActivatedRoute, private api: ApiService, private formBuilder: FormBuilder) { }
 
@@ -28,7 +29,7 @@ export class CustomerEditComponent implements OnInit {
       name: ['',[ Validators.required, Validators.minLength(2) , Validators.maxLength(50) ]],
       address : ['',[ Validators.required, Validators.minLength(1) , Validators.maxLength(100) ]],
       city : ['', [ Validators.required, Validators.minLength(1) , Validators.maxLength(30) ]],
-      telephone : ['', [ Validators.required, Validators.minLength(1) , Validators.maxLength(20) ]]
+      telephone : ['', [ Validators.required, Validators.minLength(1) , Validators.maxLength(20), Validators.pattern("^[0-9]*$")]]
     });
   }
 
@@ -45,17 +46,22 @@ export class CustomerEditComponent implements OnInit {
   }
 
   onFormSubmit(form:NgForm) {
-    this.isLoadingResults = true;
-    this.api.updateCustomer(this._id, form)
-      .subscribe(res => {
-          let id = res['id'];
-          this.isLoadingResults = false;
-          this.router.navigate(['/customer-details', id]);
-        }, (err) => {
-          console.log(err);
-          this.isLoadingResults = false;
-        }
-      );
+    if( this.customerForm.status === "VALID" ){
+      this.isLoadingResults = true;
+      this.api.updateCustomer(this._id, form)
+        .subscribe(res => {
+            let id = res['id'];
+            this.isLoadingResults = false;
+            this.router.navigate(['/customer-details', id]);
+          }, (err) => {
+            console.log(err);
+            this.isLoadingResults = false;
+          }
+        );
+      }
+      else{
+        this.messageErrors = false;
+      }
   }
   customerDetails() {
     this.router.navigate(['/customer-details', this._id]);

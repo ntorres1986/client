@@ -18,6 +18,7 @@ export class ConsumeEditComponent implements OnInit {
 
   consume: Consume = { id : 0, date : new Date('10-Nov-2018') , description : null, amount: null , card :{id : 0, ccv : '', number : '', card_type : '', customer : null }};
   consumeForm: FormGroup;
+  messageErrors = true;
   constructor(private router: Router, private route: ActivatedRoute, private api: ApiService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
@@ -30,7 +31,7 @@ export class ConsumeEditComponent implements OnInit {
 
     this.consumeForm = this.formBuilder.group({
       date : ['',[ Validators.required,  ]],
-      amount: ['',[ Validators.required, Validators.maxLength(12) ]],
+      amount: ['',[ Validators.required, Validators.minLength(1), Validators.maxLength(12),  Validators.pattern("^[0-9]*$") ]],
       description : ['', [ Validators.required, Validators.maxLength(100) ]]
     });
   }
@@ -42,15 +43,19 @@ export class ConsumeEditComponent implements OnInit {
       });
   }
   onFormSubmit(form:NgForm) {
-    this.api.updateConsume(this.consume.id, form)
-      .subscribe(res => {
-        console.log("res", res)
-          let id = res['id'];
-          this.router.navigate(['/consume-details', id, this.consume.card.id, this.consume.card.number]);
-        }, (err) => {
-          console.log(err);
-        }
-      );
+    if( this.consumeForm.status === "VALID" ){
+      this.api.updateConsume(this.consume.id, form)
+        .subscribe(res => {
+          console.log("res", res)
+            let id = res['id'];
+            this.router.navigate(['/consume-details', id, this.consume.card.id, this.consume.card.number]);
+          }, (err) => {
+            console.log(err);
+          }
+        );
+      }else{
+        this.messageErrors = false;
+      }
   }
 
 }
